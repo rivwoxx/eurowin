@@ -16,18 +16,17 @@ import com.rivwox.eurowin.service.ByYearService;
 public class ByYearController {
 	@Autowired
 	ByYearService yearservice;
-	
-	
-	@GetMapping(value="ByYear/{yr}")
-	public ResponseEntity<Object> getWinnerByYear(@PathVariable String yr){
-		Long yrr = Long.parseLong(yr);
-		
+
+	@GetMapping(value = "ByYear/{yrr}")
+	public ResponseEntity<Object> getWinnerByYear(@PathVariable Long yrr) {
+//		Long yrr = Long.parseLong(yr);
+
 		ServiceResponse serviceres = new ServiceResponse();
+
 		JsonNode res = yearservice.getWinnerByYear(yrr);
-		
-		if(res == null || res.size() == 0) {
+		if (res == null || res.size() == 0) {
 			serviceres.setMesaje("Not data found");
-		}else {
+		} else {
 			serviceres.setData(res);
 			serviceres.setMesaje("OK");
 		}
